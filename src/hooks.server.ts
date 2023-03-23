@@ -1,19 +1,9 @@
 import { SvelteKitAuth } from '@auth/sveltekit';
 import GitHub from '@auth/core/providers/github';
 import Google from '@auth/core/providers/google';
-import {
-	GITHUB_ID,
-	GITHUB_SECRET,
-	GOOGLE_ID,
-	GOOGLE_SECRET,
-	XATA_API_KEY
-} from '$env/static/private';
+import { GITHUB_ID, GITHUB_SECRET, GOOGLE_ID, GOOGLE_SECRET } from '$env/static/private';
 import { XataAdapter } from '@next-auth/xata-adapter';
-import { XataClient } from '$lib/xata';
-
-const client = new XataClient({
-	apiKey: XATA_API_KEY
-});
+import { client } from '$lib/db';
 
 export const handle = SvelteKitAuth({
 	adapter: XataAdapter(client),
